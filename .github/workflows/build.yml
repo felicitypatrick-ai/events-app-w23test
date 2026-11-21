@@ -8,16 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Check the code compiles
         run: python -m py_compile app/events.py
-      - name: Build the package
-        run: |
-          mkdir -p dist
-          cp app/*.py dist/
       - name: Upload the build artifact
         uses: actions/upload-artifact@v4
         with:
