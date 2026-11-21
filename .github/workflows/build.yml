@@ -1,7 +1,7 @@
 name: Build
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "main" ]
 jobs:
@@ -15,6 +15,10 @@ jobs:
           python-version: "3.12"
       - name: Check the code compiles
         run: python -m py_compile app/events.py
+      - name: Build the package
+        run: |
+          mkdir -p dist
+          cp app/*.py dist/
       - name: Upload the build artifact
         uses: actions/upload-artifact@v4
         with:
